@@ -1,0 +1,30 @@
+variables:
+  KATA_RPG_FOLDER: 'kata-leap-year'
+
+build:kata-leap-year:
+  extends:
+    - .maven
+    - .only-default
+  needs: [ ]
+  stage: build
+  before_script:
+    - cd $KATA_RPG_FOLDER
+  script: mvn $MAVEN_CLI_OPTS test-compile
+  only:
+    changes:
+      - 'kata-leap-year/*'
+      - 'kata-leap-year/**/*'
+
+test:kata-leap-year:
+  extends:
+    - .maven
+    - .only-default
+  needs: [ "build:kata-leap-year" ]
+  stage: test
+  before_script:
+    - cd $KATA_RPG_FOLDER
+  script: mvn $MAVEN_CLI_OPTS verify
+  only:
+    changes:
+      - 'kata-leap-year/*'
+      - 'kata-leap-year/**/*'

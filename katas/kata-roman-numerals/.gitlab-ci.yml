@@ -1,0 +1,30 @@
+variables:
+  KATA_ROMAN_NUMERALS_FOLDER: 'kata-roman-numerals'
+
+build:kata-roman-numerals:
+  extends:
+    - .maven
+    - .only-default
+  needs: [ ]
+  stage: build
+  before_script:
+    - cd $KATA_ROMAN_NUMERALS_FOLDER
+  script: mvn $MAVEN_CLI_OPTS test-compile
+  only:
+    changes:
+      - 'kata-roman-numerals/*'
+      - 'kata-roman-numerals/**/*'
+
+test:kata-roman-numerals:
+  extends:
+    - .maven
+    - .only-default
+  needs: [ "build:kata-roman-numerals" ]
+  stage: test
+  before_script:
+    - cd $KATA_ROMAN_NUMERALS_FOLDER
+  script: mvn $MAVEN_CLI_OPTS verify
+  only:
+    changes:
+      - 'kata-roman-numerals/*'
+      - 'kata-roman-numerals/**/*'

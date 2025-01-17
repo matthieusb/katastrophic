@@ -1,0 +1,30 @@
+variables:
+  KATA_TENNIS_REFACTO_FOLDER: 'kata-starters/kata-tennis/refactoring-kata'
+
+build:kata-tennis-refacto:
+  extends:
+    - .maven
+    - .only-default
+  needs: [ ]
+  stage: build
+  before_script:
+    - cd $KATA_TENNIS_REFACTO_FOLDER
+  script: mvn $MAVEN_CLI_OPTS test-compile
+  only:
+    changes:
+      - 'kata-starters/kata-tennis/refactoring-kata/*'
+      - 'kata-starters/kata-tennis/refactoring-kata/**/*'
+
+test:kata-tennis-refacto:
+  extends:
+    - .maven
+    - .only-default
+  needs: [ "build:kata-tennis-refacto" ]
+  stage: test
+  before_script:
+    - cd $KATA_TENNIS_REFACTO_FOLDER
+  script: mvn $MAVEN_CLI_OPTS verify
+  only:
+    changes:
+      - 'kata-starters/kata-tennis/refactoring-kata/*'
+      - 'kata-starters/kata-tennis/refactoring-kata/**/*'

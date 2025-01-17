@@ -1,0 +1,39 @@
+variables:
+  MAVEN_CLI_OPTS: "--batch-mode"
+  MAVEN_OPTS: "-Dmaven.repo.local=.m2/repository"
+
+cache:
+  paths:
+    - .m2/repository/
+    - target/
+    - typescript/npm/node_modules/
+
+stages:
+  - build
+  - test
+
+.only-default:
+  only:
+    refs:
+      - master
+      - merge_requests
+      - tags
+    changes:
+      - '.gitlab-ci.yml'
+
+.maven:
+  image: maven:3.6.3-adoptopenjdk-11
+
+.typescript-npm:
+  image: node:erbium-alpine
+
+include:
+  - local: 'kata-bowling/typescript/.gitlab-ci.yml'
+  - local: 'kata-roman-numerals/.gitlab-ci.yml'
+  - local: 'kata-rpg/.gitlab-ci.yml'
+  - local: 'kata-word-wrap/.gitlab-ci.yml'
+  - local: 'kata-leap-year/.gitlab-ci.yml'
+  - local: 'kata-tennis/coding-kata/.gitlab-ci.yml'
+  - local: 'kata-tennis/refactoring-kata/.gitlab-ci.yml'
+
+# TODO Add train reservation kata

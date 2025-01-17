@@ -1,0 +1,45 @@
+variables:
+  GRADLE_PROJECT_FOLDER: 'technical-starters/java/gradle'
+
+cache:
+  paths:
+    - .gradle/wrapper
+    - .gradle/caches
+
+.gradle:
+  extends: .only-default
+  image: gradle:6.0-jdk11
+  only:
+    changes:
+      - 'java/gradle/**'
+      - '.gitlab-ci.yml'
+
+build:gradle:
+  extends:
+    - .gradle
+  needs: [ ]
+  stage: build
+  before_script:
+    - cd $GRADLE_PROJECT_FOLDER
+  script: gradle --build-cache assemble
+  cache:
+    key: "$CI_COMMIT_REF_NAME"
+    policy: push
+    paths:
+      - build
+      - .gradle
+
+test:gradle:
+  extends:
+    - .gradle
+  needs: [ "build:gradle" ]
+  stage: test
+  before_script:
+    - cd $GRADLE_PROJECT_FOLDER
+  script: gradle check
+  cache:
+    key: "$CI_COMMIT_REF_NAME"
+    policy: push
+    paths:
+      - build
+      - .gradle

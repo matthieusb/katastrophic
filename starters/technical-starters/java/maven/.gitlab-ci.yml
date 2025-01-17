@@ -1,0 +1,35 @@
+variables:
+  MAVEN_CLI_OPTS: "--batch-mode"
+  MAVEN_OPTS: "-Dmaven.repo.local=.m2/repository"
+  MAVEN_PROJECT_FOLDER: 'technical-starters/java/maven'
+
+cache:
+  paths:
+    - .m2/repository/
+    - target/
+
+.maven:
+  extends: .only-default
+  image: maven:3.6.3-adoptopenjdk-11
+  only:
+    changes:
+      - 'java/maven/**'
+      - '.gitlab-ci.yml'
+
+build:maven:
+  extends:
+    - .maven
+  needs: [ ]
+  stage: build
+  before_script:
+    - cd $MAVEN_PROJECT_FOLDER
+  script: mvn $MAVEN_CLI_OPTS test-compile
+
+test:maven:
+  extends:
+    - .maven
+  needs: [ "build:maven" ]
+  stage: test
+  before_script:
+    - cd $MAVEN_PROJECT_FOLDER
+  script: mvn $MAVEN_CLI_OPTS verify

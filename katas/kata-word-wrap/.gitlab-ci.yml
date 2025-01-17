@@ -1,0 +1,26 @@
+variables:
+  KATA_WORD_WRAP_FOLDER: 'kata-word-wrap'
+
+build:kata-word-wrap:
+  extends:
+    - .maven
+  needs: [ ]
+  stage: build
+  before_script:
+    - cd $KATA_WORD_WRAP_FOLDER
+  script: mvn $MAVEN_CLI_OPTS test-compile
+  only:
+    changes:
+      - 'kata-word-wrap/**'
+
+test:kata-word-wrap:
+  extends:
+    - .maven
+  needs: [ "build:kata-word-wrap" ]
+  stage: test
+  before_script:
+    - cd $KATA_WORD_WRAP_FOLDER
+  script: mvn $MAVEN_CLI_OPTS verify
+  only:
+    changes:
+      - 'kata-word-wrap/**'

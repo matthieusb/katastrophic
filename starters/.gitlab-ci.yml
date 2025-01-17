@@ -1,0 +1,27 @@
+stages:
+  - build
+  - test
+
+.only-default:
+  only:
+    refs:
+      - master
+      - merge_requests
+      - tags
+    changes:
+      - '.gitlab-ci.yml'
+
+include:
+  - local: "technical-starters/java/maven/.gitlab-ci.yml"
+  - local: "technical-starters/java/gradle/.gitlab-ci.yml"
+  - local: "technical-starters/typescript/npm/.gitlab-ci.yml"
+  - local: "technical-starters/dotnet/kata-csharp/.gitlab-ci.yml"
+  - local: "technical-starters/dotnet/kata-fsharp/.gitlab-ci.yml"
+  - local: "kata-starters/kata-bowling/typescript/.gitlab-ci.yml"
+  - local: "kata-starters/kata-leap-year/.gitlab-ci.yml"
+  - local: "kata-starters/kata-roman-numerals/java/.gitlab-ci.yml"
+  - local: "kata-starters/kata-roman-numerals/typescript/.gitlab-ci.yml"
+  - local: "kata-starters/kata-rpg/.gitlab-ci.yml"
+  - local: "kata-starters/kata-tennis/coding-kata/.gitlab-ci.yml"
+  - local: "kata-starters/kata-tennis/refactoring-kata/.gitlab-ci.yml"
+  - local: "kata-starters/kata-word-wrap/.gitlab-ci.yml"

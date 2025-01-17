@@ -1,0 +1,30 @@
+variables:
+  KATA_TENNIS_CODING_FOLDER: 'kata-starters/kata-tennis/coding-kata'
+
+build:kata-tennis-coding:
+  extends:
+    - .maven
+    - .only-default
+  needs: [ ]
+  stage: build
+  before_script:
+    - cd $KATA_TENNIS_CODING_FOLDER
+  script: mvn $MAVEN_CLI_OPTS test-compile
+  only:
+    changes:
+      - 'kata-starters/kata-tennis/coding-kata/*'
+      - 'kata-starters/kata-tennis/coding-kata/**/*'
+
+test:kata-tennis-coding:
+  extends:
+    - .maven
+    - .only-default
+  needs: [ "build:kata-tennis-coding" ]
+  stage: test
+  before_script:
+    - cd $KATA_TENNIS_CODING_FOLDER
+  script: mvn $MAVEN_CLI_OPTS verify
+  only:
+    changes:
+      - 'kata-starters/kata-tennis/coding-kata/*'
+      - 'kata-starters/kata-tennis/coding-kata/**/*'
