@@ -1,15 +1,5 @@
 name: katastrophic project ci workflow
-
-on:
-  push:
-    branches:
-      - '*'
-    tags:
-      - '*'
-  pull_request:
-    paths:
-      - '.github/**'
-
+on: [push]
 jobs:
   build-and-test:
     name: Build and Test
