@@ -1,0 +1,13 @@
+name: katastrophic project ci workflow
+
+on: [push]
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: technical-starters.java.maven
+        uses: ./.github/workflows/starters/technical-starters/java/maven/main.yml
