@@ -1,4 +1,4 @@
-name: katastrophic prjoct ci workflow
+name: katastrophic project ci workflow
 
 on:
   push:
@@ -31,8 +31,5 @@ jobs:
 #          - path: starters/kata-starters/kata-tennis/refactoring-kata/main.yml
 #          - path: starters/kata-starters/kata-word-wrap/main.yml
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
-
       - name: Include Config
         uses: ${{ matrix.config }}
