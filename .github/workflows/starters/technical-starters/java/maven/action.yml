@@ -18,8 +18,8 @@ variables:
 
 jobs:
   build:
+    runs-on: ubuntu-latest
     container: maven:3.6.3-adoptopenjdk-11
-
     steps:
       - uses: actions/checkout@v4
 
@@ -36,6 +36,7 @@ jobs:
 
   test:
     needs: build
+    runs-on: ubuntu-latest
     container: maven:3.6.3-adoptopenjdk-11
 
     steps:
