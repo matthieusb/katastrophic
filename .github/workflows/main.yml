@@ -9,5 +9,8 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
+      - name: pouet
+        run: ls ./.github/workflows/starters
+
       - name: technical-starters.java.maven
         uses: ./.github/workflows/starters/technical-starters/java/maven/main.yml
