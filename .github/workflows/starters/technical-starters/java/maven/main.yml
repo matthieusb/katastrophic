@@ -1,0 +1,76 @@
+name: Maven CI Workflow
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'java/maven/**'
+      - '.github/workflows/**'
+  pull_request:
+    paths:
+      - 'java/maven/**'
+      - '.github/workflows/**'
+
+env:
+  MAVEN_CLI_OPTS: "--batch-mode"
+  MAVEN_OPTS: "-Dmaven.repo.local=.m2/repository"
+  MAVEN_PROJECT_FOLDER: "starters/technical-starters/java/maven"
+
+jobs:
+  build:
+    name: Build Maven Project
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up cache for Maven
+        uses: actions/cache@v3
+        with:
+          path: |
+            .m2/repository
+            target
+          key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
+          restore-keys: |
+            ${{ runner.os }}-maven-
+
+      - name: Set up Java
+        uses: actions/setup-java@v3
+        with:
+          java-version: '11'
+          distribution: 'adopt'
+
+      - name: Build project
+        run: |
+          cd $MAVEN_PROJECT_FOLDER
+          mvn $MAVEN_CLI_OPTS test-compile
+
+  test:
+    name: Test Maven Project
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Restore Maven cache
+        uses: actions/cache@v3
+        with:
+          path: |
+            .m2/repository
+            target
+          key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
+          restore-keys: |
+            ${{ runner.os }}-maven-
+
+      - name: Set up Java
+        uses: actions/setup-java@v3
+        with:
+          java-version: '11'
+          distribution: 'adopt'
+
+      - name: Test project
+        run: |
+          cd $MAVEN_PROJECT_FOLDER
+          mvn $MAVEN_CLI_OPTS verify

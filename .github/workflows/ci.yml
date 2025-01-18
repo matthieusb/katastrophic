@@ -1,0 +1,38 @@
+name: CI Workflows
+
+on:
+  push:
+    branches:
+      - '*'
+    tags:
+      - '*'
+  pull_request:
+    paths:
+      - '.github/**'
+
+jobs:
+  build-and-test:
+    name: Build and Test
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        config:
+          - path: starters/technical-starters/java/maven/main.yml
+#          - path: starters/technical-starters/java/gradle/main.yml
+#          - path: starters/technical-starters/typescript/npm/main.yml
+#          - path: starters/technical-starters/dotnet/kata-csharp/main.yml
+#          - path: starters/technical-starters/dotnet/kata-fsharp/main.yml
+#          - path: starters/kata-starters/kata-bowling/typescript/main.yml
+#          - path: starters/kata-starters/kata-leap-year/main.yml
+#          - path: starters/kata-starters/kata-roman-numerals/java/main.yml
+#          - path: starters/kata-starters/kata-roman-numerals/typescript/main.yml
+#          - path: starters/kata-starters/kata-rpg/main.yml
+#          - path: starters/kata-starters/kata-tennis/coding-kata/main.yml
+#          - path: starters/kata-starters/kata-tennis/refactoring-kata/main.yml
+#          - path: starters/kata-starters/kata-word-wrap/main.yml
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Include Config
+        uses: ${{ matrix.config }}
