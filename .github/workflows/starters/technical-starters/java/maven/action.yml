@@ -1,0 +1,40 @@
+name: Maven CI Workflow
+
+on:
+  workflow_call:
+
+variables:
+  MAVEN_CLI_OPTS: "--batch-mode"
+  MAVEN_OPTS: "-Dmaven.repo.local=.m2/repository"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+#      - name: Cache Maven repository
+#        uses: actions/cache@v3
+#        with:
+#          path: .m2/repository
+#          key: ${{ runner.os }}-maven-repo-${{ hashFiles('**/pom.xml') }}
+#          restore-keys: |
+#            ${{ runner.os }}-maven-repo-
+
+      - name: Set up Maven container
+        uses: docker://maven:3.6.3-adoptopenjdk-11
+
+      - name: Build with Maven
+        run: mvn $MAVEN_CLI_OPTS clean package
+
+  test:
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Maven container
+        uses: docker://maven:3.6.3-adoptopenjdk-11
+
+      - name: Build with Maven
+        run: mvn $MAVEN_CLI_OPTS verify
