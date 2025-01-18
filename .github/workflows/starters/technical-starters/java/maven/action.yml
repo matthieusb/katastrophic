@@ -2,15 +2,6 @@ name: Maven CI Workflow
 
 on:
   workflow_call:
-    inputs:
-      branches:
-        type: string
-        default: main
-      paths:
-        type: array
-        default:
-          - 'starters/technical-starters/java/maven/**'
-          - '.github/workflows/**'
 
 variables:
   MAVEN_CLI_OPTS: "--batch-mode"
