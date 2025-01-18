@@ -1,0 +1,26 @@
+name: Gradle CI Workflow
+
+inputs:
+  project-folder:
+    description: Gradle project folder
+    required: true
+    default: 'starters/technical-starters/java/gradle'
+  gradle-cli-opts:
+    description: Gradle CLI options
+    required: false
+    default: '--no-daemon'
+
+runs:
+  using: "composite"
+  steps:
+    - uses: actions/checkout@v4
+
+    - name: build:java-gradle
+      shell: bash
+      run: gradle ${{ inputs.gradle-cli-opts }} --build-cache assemble
+      working-directory: ${{ inputs.project-folder }}
+
+    - name: test:java-gradle
+      shell: bash
+      run: gradle ${{ inputs.gradle-cli-opts }} check
+      working-directory: ${{ inputs.project-folder }}

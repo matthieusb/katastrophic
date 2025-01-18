@@ -1,0 +1,28 @@
+name: Maven CI Workflow
+
+inputs:
+  project-folder:
+    description: Maven project folder
+    required: true
+    default: 'starters/technical-starters/java/maven'
+  maven-cli-opts:
+    description: Maven CLI options
+    required: false
+    default: '--batch-mode'
+
+# TODO Add some caching of maven repository if possible
+
+runs:
+  using: "composite"
+  steps:
+    - uses: actions/checkout@v4
+
+    - name: build:java-maven
+      shell: bash
+      run: mvn ${{ inputs.maven-cli-opts }} test-compile
+      working-directory: ${{ inputs.project-folder }}
+
+    - name: test:java-maven
+      shell: bash
+      run: mvn ${{ inputs.maven-cli-opts }} verify
+      working-directory: ${{ inputs.project-folder }}

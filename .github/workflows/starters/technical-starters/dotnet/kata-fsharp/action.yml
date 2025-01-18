@@ -1,0 +1,26 @@
+name: Dotnet F# NPM CI Workflow
+
+inputs:
+  project-folder:
+    description: Project folder
+    required: true
+    default: 'starters/technical-starters/dotnet/kata-fsharp'
+  dotnet-cli-opts:
+    description: Dotnet CLI options
+    required: false
+    #default: '--no-restore'
+
+runs:
+  using: composite
+  steps:
+    - uses: actions/checkout@v4
+
+    - name: build:dotnet-f#
+      shell: sh
+      run: dotnet ${{ inputs.dotnet-cli-opts }} build
+      working-directory: ${{ inputs.project-folder }}
+
+    - name: test:dotnet-f#
+      shell: sh
+      run: dotnet ${{ inputs.dotnet-cli-opts }} test
+      working-directory: ${{ inputs.project-folder }}
