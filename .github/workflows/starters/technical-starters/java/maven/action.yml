@@ -37,8 +37,8 @@ jobs:
         run: mvn $MAVEN_CLI_OPTS clean package
 
   test:
-    needs: build
     runs-on: ubuntu-latest
+    needs: build
     steps:
       - uses: actions/checkout@v4
 

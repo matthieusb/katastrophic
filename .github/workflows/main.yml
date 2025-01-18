@@ -11,8 +11,3 @@ jobs:
 
       - name: technical-starters.java.maven
         uses: ./.github/workflows/starters/technical-starters/java/maven
-        with:
-          branches: main
-          paths:
-            - 'starters/technical-starters/java/maven/**'
-            - '.github/workflows/**'
