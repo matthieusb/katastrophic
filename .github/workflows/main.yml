@@ -3,14 +3,14 @@ name: katastrophic project ci workflow
 on: [push]
 
 jobs:
-  build-and-deploy:
+  build-and-test:
     runs-on: ubuntu-latest
 
     steps:
       - uses: actions/checkout@v3
 
       - name: pouet
-        run: ls ./.github/workflows/starters
+        run: ls ./.github/workflows/starters/technical-starters/java/maven/
 
       - name: technical-starters.java.maven
-        uses: ./.github/workflows/starters/technical-starters/java/maven/main.yml
+        uses: ./.github/workflows/starters/technical-starters/java/maven
