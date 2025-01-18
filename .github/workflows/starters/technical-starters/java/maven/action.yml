@@ -19,7 +19,6 @@ variables:
 jobs:
   build:
     runs-on: ubuntu-latest
-    container: maven:3.6.3-adoptopenjdk-11
     steps:
       - uses: actions/checkout@v4
 
@@ -31,6 +30,9 @@ jobs:
 #          restore-keys: |
 #            ${{ runner.os }}-maven-repo-
 
+      - name: Set up Maven container
+        uses: docker://maven:3.6.3-adoptopenjdk-11
+
       - name: Build with Maven
         run: mvn $MAVEN_CLI_OPTS clean package
 
@@ -41,6 +43,9 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
+
+      - name: Set up Maven container
+        uses: docker://maven:3.6.3-adoptopenjdk-11
 
       - name: Build with Maven
         run: mvn $MAVEN_CLI_OPTS verify
