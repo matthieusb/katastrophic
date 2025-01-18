@@ -1,57 +1,32 @@
-name: GitHub Actions Demo
-run-name: ${{ github.actor }} is testing out GitHub Actions 🚀
-on: [push]
-jobs:
-  Explore-GitHub-Actions:
-    runs-on: ubuntu-latest
-    steps:
-      - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
-      - run: echo "🐧 This job is now running on a ${{ runner.os }} server hosted by GitHub!"
-      - run: echo "🔎 The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}."
-      - name: Check out repository code
-        uses: actions/checkout@v4
-      - run: echo "💡 The ${{ github.repository }} repository has been cloned to the runner."
-      - run: echo "🖥️ The workflow is now ready to test your code on the runner."
-      - name: List files in the repository
-        run: |
-          ls ${{ github.workspace }}
-      - run: echo "🍏 This job's status is ${{ job.status }}."
+name: katastrophic ci workflow
 
-#name: CI Workflows
-#
-#on:
-#  push:
-#    branches:
-#      - '*'
-#    tags:
-#      - '*'
-#  pull_request:
-#    paths:
-#      - '.github/**'
-#
-#jobs:
-#  build-and-test:
-#    name: Build and Test
-#    runs-on: ubuntu-latest
-#    strategy:
-#      matrix:
-#        config:
-#          - path: starters/technical-starters/java/maven/main.yml
-##          - path: starters/technical-starters/java/gradle/main.yml
-##          - path: starters/technical-starters/typescript/npm/main.yml
-##          - path: starters/technical-starters/dotnet/kata-csharp/main.yml
-##          - path: starters/technical-starters/dotnet/kata-fsharp/main.yml
-##          - path: starters/kata-starters/kata-bowling/typescript/main.yml
-##          - path: starters/kata-starters/kata-leap-year/main.yml
-##          - path: starters/kata-starters/kata-roman-numerals/java/main.yml
-##          - path: starters/kata-starters/kata-roman-numerals/typescript/main.yml
-##          - path: starters/kata-starters/kata-rpg/main.yml
-##          - path: starters/kata-starters/kata-tennis/coding-kata/main.yml
-##          - path: starters/kata-starters/kata-tennis/refactoring-kata/main.yml
-##          - path: starters/kata-starters/kata-word-wrap/main.yml
-#    steps:
-#      - name: Checkout code
-#        uses: actions/checkout@v3
-#
-#      - name: Include Config
-#        uses: ${{ matrix.config }}
+on:
+  push:
+    branches:
+      - '*'
+    tags:
+      - '*'
+  pull_request:
+    paths:
+      - '.github/**'
+
+jobs:
+  build-and-test:
+    name: Build and Test
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        config:
+          - path: .github/workflows/starters/technical-starters/java/maven/main.yml
+#          - path: starters/technical-starters/java/gradle/main.yml
+#          - path: starters/technical-starters/typescript/npm/main.yml
+#          - path: starters/technical-starters/dotnet/kata-csharp/main.yml
+#          - path: starters/technical-starters/dotnet/kata-fsharp/main.yml
+#          - path: starters/kata-starters/kata-bowling/typescript/main.yml
+#          - path: starters/kata-starters/kata-leap-year/main.yml
+#          - path: starters/kata-starters/kata-roman-numerals/java/main.yml
+#          - path: starters/kata-starters/kata-roman-numerals/typescript/main.yml
+#          - path: starters/kata-starters/kata-rpg/main.yml
+#          - path: starters/kata-starters/kata-tennis/coding-kata/main.yml
+#          - path: starters/kata-starters/kata-tennis/refactoring-kata/main.yml
+#          - path: starters/kata-starters/kata-word-wrap/main.yml
