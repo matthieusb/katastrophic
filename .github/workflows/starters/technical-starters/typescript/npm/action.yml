@@ -1,0 +1,31 @@
+name: Typescript NPM CI Workflow
+
+inputs:
+  project-folder:
+    description: Typescript NPM project folder
+    required: true
+    default: 'starters/technical-starters/typescript/npm'
+  npm-cli-opts:
+    description: NPM CLI options
+    required: false
+    default: '--no-audit'
+
+runs:
+  using: "composite"
+  steps:
+    - uses: actions/checkout@v4
+
+    - name: install:npm-ts
+      shell: sh
+      run: npm ${{ inputs.npm-cli-opts }} install
+      working-directory: ${{ inputs.project-folder }}
+
+    - name: build:npm-ts
+      shell: sh
+      run: npm ${{ inputs.npm-cli-opts }} run compile
+      working-directory: ${{ inputs.project-folder }}
+
+    - name: test:npm-ts
+      shell: sh
+      run: npm ${{ inputs.npm-cli-opts }} run test
+      working-directory: ${{ inputs.project-folder }}
