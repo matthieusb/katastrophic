@@ -32,8 +32,8 @@ jobs:
       image: maven:3.6.3-adoptopenjdk-11
     steps:
       - uses: actions/checkout@v4
-      - name: technical-starters.java.maven
-        uses: ./.github/workflows/starters/technical-starters/java/maven
+      - name: technical-starters.java.old.maven
+        uses: ./.github/workflows/starters/technical-starters/java/old/maven
 
   technical-starters_java-gradle_build-and-test:
     runs-on: ubuntu-latest
@@ -41,17 +41,17 @@ jobs:
       image: gradle:7.6.1-jdk11
     steps:
       - uses: actions/checkout@v4
-      - name: technical-starters.java.gradle
-        uses: ./.github/workflows/starters/technical-starters/java/gradle
+      - name: technical-starters.java.old.gradle
+        uses: ./.github/workflows/starters/technical-starters/java/old/gradle
 
-  technical-starters_typescript_npm_build-and-test:
+  technical-starters_typescript_npm_node_22_build-and-test:
     runs-on: ubuntu-latest
     container:
-      image: node:erbium-alpine
+      image: node:jod-alpine
     steps:
       - uses: actions/checkout@v4
-      - name: technical-starters.typescript.npm
-        uses: ./.github/workflows/starters/technical-starters/typescript/npm
+      - name: technical-starters.typescript.npm.node22
+        uses: ./.github/workflows/starters/technical-starters/typescript/node-lts-22/npm
 
   # -----------------------------------------
   # ----- Kata starters
@@ -59,11 +59,11 @@ jobs:
   starters-kata-bowling-ts:
     runs-on: ubuntu-latest
     container:
-      image: node:erbium-alpine
+      image: node:jod-alpine
     steps:
       - uses: actions/checkout@v4
       - name: starters.kata.bowling.ts
-        uses: ./.github/workflows/starters/technical-starters/typescript/npm
+        uses: ./.github/workflows/starters/technical-starters/typescript/node-lts-22/npm
         with:
           project-folder: 'starters/kata-starters/kata-bowling/typescript'
 
@@ -74,7 +74,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: starters.kata.leap-year
-        uses: ./.github/workflows/starters/technical-starters/java/maven
+        uses: ./.github/workflows/starters/technical-starters/java/old/maven
         with:
           project-folder: 'starters/kata-starters/kata-leap-year'
 
@@ -85,7 +85,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: starters.kata.roman-numerals.java
-        uses: ./.github/workflows/starters/technical-starters/java/maven
+        uses: ./.github/workflows/starters/technical-starters/java/old/maven
         with:
           project-folder: 'starters/kata-starters/kata-roman-numerals/java'
 
@@ -96,7 +96,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: starters.kata.roman-numerals.ts
-        uses: ./.github/workflows/starters/technical-starters/typescript/npm
+        uses: ./.github/workflows/starters/technical-starters/typescript/node-lts-22/npm
         with:
           project-folder: 'starters/kata-starters/kata-roman-numerals/typescript'
 
@@ -107,7 +107,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: starters.kata.rpg
-        uses: ./.github/workflows/starters/technical-starters/java/maven
+        uses: ./.github/workflows/starters/technical-starters/java/old/maven
         with:
           project-folder: 'starters/kata-starters/kata-rpg'
 
@@ -118,7 +118,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: starters.kata.tennis.coding
-        uses: ./.github/workflows/starters/technical-starters/java/maven
+        uses: ./.github/workflows/starters/technical-starters/java/old/maven
         with:
           project-folder: 'starters/kata-starters/kata-tennis/coding-kata'
 
@@ -129,7 +129,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: starters.kata.tennis.refactoring
-        uses: ./.github/workflows/starters/technical-starters/java/maven
+        uses: ./.github/workflows/starters/technical-starters/java/old/maven
         with:
           project-folder: 'starters/kata-starters/kata-tennis/refactoring-kata'
 
@@ -140,7 +140,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: starters.kata.word-wrap
-        uses: ./.github/workflows/starters/technical-starters/java/maven
+        uses: ./.github/workflows/starters/technical-starters/java/old/maven
         with:
           project-folder: 'starters/kata-starters/kata-word-wrap'
 
@@ -154,7 +154,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: kata.bowling.ts
-        uses: ./.github/workflows/starters/technical-starters/typescript/npm
+        uses: ./.github/workflows/starters/technical-starters/typescript/node-lts-22/npm
         with:
           project-folder: 'katas/kata-bowling/typescript'
 
@@ -165,7 +165,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: kata.leap-year
-        uses: ./.github/workflows/starters/technical-starters/java/maven
+        uses: ./.github/workflows/starters/technical-starters/java/old/maven
         with:
           project-folder: 'katas/kata-leap-year'
 
@@ -176,7 +176,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: kata.roman-numerals
-        uses: ./.github/workflows/starters/technical-starters/java/maven
+        uses: ./.github/workflows/starters/technical-starters/java/old/maven
         with:
           project-folder: 'katas/kata-roman-numerals'
 
@@ -187,7 +187,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: kata.rpg
-        uses: ./.github/workflows/starters/technical-starters/java/maven
+        uses: ./.github/workflows/starters/technical-starters/java/old/maven
         with:
           project-folder: 'katas/kata-rpg'
 
@@ -198,7 +198,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: kata.tennis.coding
-        uses: ./.github/workflows/starters/technical-starters/java/maven
+        uses: ./.github/workflows/starters/technical-starters/java/old/maven
         with:
           project-folder: 'katas/kata-tennis/coding-kata'
 
@@ -209,7 +209,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: kata.tennis.refactoring
-        uses: ./.github/workflows/starters/technical-starters/java/maven
+        uses: ./.github/workflows/starters/technical-starters/java/old/maven
         with:
           project-folder: 'katas/kata-tennis/refactoring-kata'
 
@@ -220,6 +220,6 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: kata.word-wrap
-        uses: ./.github/workflows/starters/technical-starters/java/maven
+        uses: ./.github/workflows/starters/technical-starters/java/old/maven
         with:
           project-folder: 'katas/kata-word-wrap'

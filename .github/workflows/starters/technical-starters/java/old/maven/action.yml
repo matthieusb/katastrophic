@@ -4,7 +4,7 @@ inputs:
   project-folder:
     description: Maven project folder
     required: true
-    default: 'starters/technical-starters/java/maven'
+    default: 'starters/technical-starters/java/old/maven'
   maven-cli-opts:
     description: Maven CLI options
     required: false
