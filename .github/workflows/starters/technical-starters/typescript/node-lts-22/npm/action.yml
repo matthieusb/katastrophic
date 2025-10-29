@@ -4,7 +4,7 @@ inputs:
   project-folder:
     description: Typescript NPM project folder
     required: true
-    default: 'starters/technical-starters/typescript/npm'
+    default: 'starters/technical-starters/typescript/node-lts-22/npm'
   npm-cli-opts:
     description: NPM CLI options
     required: false

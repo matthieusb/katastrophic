@@ -44,14 +44,14 @@ jobs:
       - name: technical-starters.java.old.gradle
         uses: ./.github/workflows/starters/technical-starters/java/old/gradle
 
-  technical-starters_typescript_npm_build-and-test:
+  technical-starters_typescript_npm_node_22_build-and-test:
     runs-on: ubuntu-latest
     container:
-      image: node:erbium-alpine
+      image: node:jod-alpine
     steps:
       - uses: actions/checkout@v4
-      - name: technical-starters.typescript.npm
-        uses: ./.github/workflows/starters/technical-starters/typescript/npm
+      - name: technical-starters.typescript.npm.node22
+        uses: ./.github/workflows/starters/technical-starters/typescript/node-lts-22/npm
 
   # -----------------------------------------
   # ----- Kata starters
@@ -59,11 +59,11 @@ jobs:
   starters-kata-bowling-ts:
     runs-on: ubuntu-latest
     container:
-      image: node:erbium-alpine
+      image: node:jod-alpine
     steps:
       - uses: actions/checkout@v4
       - name: starters.kata.bowling.ts
-        uses: ./.github/workflows/starters/technical-starters/typescript/npm
+        uses: ./.github/workflows/starters/technical-starters/typescript/node-lts-22/npm
         with:
           project-folder: 'starters/kata-starters/kata-bowling/typescript'
 
@@ -96,7 +96,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: starters.kata.roman-numerals.ts
-        uses: ./.github/workflows/starters/technical-starters/typescript/npm
+        uses: ./.github/workflows/starters/technical-starters/typescript/node-lts-22/npm
         with:
           project-folder: 'starters/kata-starters/kata-roman-numerals/typescript'
 
@@ -154,7 +154,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: kata.bowling.ts
-        uses: ./.github/workflows/starters/technical-starters/typescript/npm
+        uses: ./.github/workflows/starters/technical-starters/typescript/node-lts-22/npm
         with:
           project-folder: 'katas/kata-bowling/typescript'
 

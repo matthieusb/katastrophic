@@ -28,7 +28,7 @@ Simple suggestions for test cases:
 
 ### Examples
 
-![Bowling examples scores image](./examples.png "Bowling examples results image")
+![Drag Racing](./examples.png)
 
 ### More Help
 
