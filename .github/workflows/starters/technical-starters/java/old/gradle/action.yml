@@ -4,7 +4,7 @@ inputs:
   project-folder:
     description: Gradle project folder
     required: true
-    default: 'starters/technical-starters/java/gradle'
+    default: 'starters/technical-starters/java/old/gradle'
   gradle-cli-opts:
     description: Gradle CLI options
     required: false
