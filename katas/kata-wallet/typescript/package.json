@@ -1,0 +1,21 @@
+{
+  "name": "kata-wallet-ts",
+  "version": "1.0.0",
+  "description": "",
+  "license": "ISC",
+  "author": "Matthieu Sauboua-Beneluz",
+  "type": "commonjs",
+  "main": "index.ts",
+  "scripts": {
+    "test": "vitest",
+    "compile": "tsc",
+    "compile:watch": "tsc -w",
+    "coverage": "vitest run --coverage"
+  },
+  "devDependencies": {
+    "@vitest/coverage-v8": "^4.0.5",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.9.3",
+    "vitest": "^4.0.5"
+  }
+}
