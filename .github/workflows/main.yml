@@ -53,6 +53,15 @@ jobs:
       - name: technical-starters.typescript.npm.node22
         uses: ./.github/workflows/starters/technical-starters/typescript/node-lts-22/npm
 
+  technical-starters_typescript_vitest_node_24_build-and-test:
+    runs-on: ubuntu-latest
+    container:
+      image: node:krypton
+    steps:
+      - uses: actions/checkout@v4
+      - name: technical-starters.typescript.npm.node24
+        uses: ./.github/workflows/starters/technical-starters/typescript/node-lts-24/vitest
+
   # -----------------------------------------
   # ----- Kata starters
   # -----------------------------------------
