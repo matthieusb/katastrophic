@@ -44,6 +44,15 @@ jobs:
       - name: technical-starters.java.old.gradle
         uses: ./.github/workflows/starters/technical-starters/java/old/gradle
 
+  technical-starters_javascript_vitest_node_24_build-and-test:
+    runs-on: ubuntu-latest
+    container:
+      image: node:krypton
+    steps:
+      - uses: actions/checkout@v4
+      - name: technical-starters.javascript.npm.node24
+        uses: ./.github/workflows/starters/technical-starters/javascript/node-lts-24/vitest
+
   technical-starters_typescript_npm_node_22_build-and-test:
     runs-on: ubuntu-latest
     container:
