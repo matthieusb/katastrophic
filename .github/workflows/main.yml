@@ -44,6 +44,8 @@ jobs:
       - name: technical-starters.java.old.gradle
         uses: ./.github/workflows/starters/technical-starters/java/old/gradle
 
+  # TODO Add new java versions here ?
+
   technical-starters_javascript_vitest_node_24_build-and-test:
     runs-on: ubuntu-latest
     container:
