@@ -33,7 +33,29 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: technical-starters.java.old.maven
-        uses: ./.github/workflows/starters/technical-starters/java/old/maven
+        uses: ./.github/workflows/starters/technical-starters/java/maven
+
+  technical-starters_java-21-maven_build-and-test:
+    runs-on: ubuntu-latest
+    container:
+      image: maven:3.9.9-eclipse-temurin-21
+    steps:
+      - uses: actions/checkout@v4
+      - name: technical-starters.java.21.maven
+        uses: ./.github/workflows/starters/technical-starters/java/maven
+        with:
+          project-folder: 'starters/technical-starters/java/21/maven'
+
+  technical-starters_java-25-maven_build-and-test:
+    runs-on: ubuntu-latest
+    container:
+      image: maven:3.9.11-eclipse-temurin-25
+    steps:
+      - uses: actions/checkout@v4
+      - name: technical-starters.java.25.maven
+        uses: ./.github/workflows/starters/technical-starters/java/maven
+        with:
+          project-folder: 'starters/technical-starters/java/21/maven'
 
   technical-starters_java-gradle_build-and-test:
     runs-on: ubuntu-latest
@@ -42,9 +64,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: technical-starters.java.old.gradle
-        uses: ./.github/workflows/starters/technical-starters/java/old/gradle
-
-  # TODO Add new java versions here ?
+        uses: ./.github/workflows/starters/technical-starters/java/gradle
 
   technical-starters_javascript_vitest_node_24_build-and-test:
     runs-on: ubuntu-latest
@@ -94,20 +114,20 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: starters.kata.leap-year
-        uses: ./.github/workflows/starters/technical-starters/java/old/maven
+        uses: ./.github/workflows/starters/technical-starters/java/maven
         with:
           project-folder: 'starters/kata-starters/kata-leap-year'
 
-  starters-kata-roman-numerals-java:
+  starters-kata-roman-numerals-old-java:
     runs-on: ubuntu-latest
     container:
       image: maven:3.6.3-adoptopenjdk-11
     steps:
       - uses: actions/checkout@v4
-      - name: starters.kata.roman-numerals.java
-        uses: ./.github/workflows/starters/technical-starters/java/old/maven
+      - name: starters.kata.roman-numerals.old.java
+        uses: ./.github/workflows/starters/technical-starters/java/maven
         with:
-          project-folder: 'starters/kata-starters/kata-roman-numerals/java'
+          project-folder: 'starters/kata-starters/kata-roman-numerals/old/java'
 
   starters-kata-roman-numerals-ts:
     runs-on: ubuntu-latest
@@ -127,7 +147,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: starters.kata.rpg
-        uses: ./.github/workflows/starters/technical-starters/java/old/maven
+        uses: ./.github/workflows/starters/technical-starters/java/maven
         with:
           project-folder: 'starters/kata-starters/kata-rpg'
 
@@ -138,7 +158,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: starters.kata.tennis.coding
-        uses: ./.github/workflows/starters/technical-starters/java/old/maven
+        uses: ./.github/workflows/starters/technical-starters/java/maven
         with:
           project-folder: 'starters/kata-starters/kata-tennis/coding-kata'
 
@@ -149,7 +169,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: starters.kata.tennis.refactoring
-        uses: ./.github/workflows/starters/technical-starters/java/old/maven
+        uses: ./.github/workflows/starters/technical-starters/java/maven
         with:
           project-folder: 'starters/kata-starters/kata-tennis/refactoring-kata'
 
@@ -160,7 +180,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: starters.kata.word-wrap
-        uses: ./.github/workflows/starters/technical-starters/java/old/maven
+        uses: ./.github/workflows/starters/technical-starters/java/maven
         with:
           project-folder: 'starters/kata-starters/kata-word-wrap'
 
@@ -185,20 +205,20 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: kata.leap-year
-        uses: ./.github/workflows/starters/technical-starters/java/old/maven
+        uses: ./.github/workflows/starters/technical-starters/java/maven
         with:
           project-folder: 'katas/kata-leap-year'
 
-  kata-roman-numerals:
+  kata-roman-numerals-old-java:
     runs-on: ubuntu-latest
     container:
       image: maven:3.6.3-adoptopenjdk-11
     steps:
       - uses: actions/checkout@v4
-      - name: kata.roman-numerals
-        uses: ./.github/workflows/starters/technical-starters/java/old/maven
+      - name: kata.roman-numerals.old.java
+        uses: ./.github/workflows/starters/technical-starters/java/maven
         with:
-          project-folder: 'katas/kata-roman-numerals'
+          project-folder: 'katas/kata-roman-numerals/old/java/'
 
   kata-rpg:
     runs-on: ubuntu-latest
@@ -207,7 +227,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: kata.rpg
-        uses: ./.github/workflows/starters/technical-starters/java/old/maven
+        uses: ./.github/workflows/starters/technical-starters/java/maven
         with:
           project-folder: 'katas/kata-rpg'
 
@@ -218,7 +238,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: kata.tennis.coding
-        uses: ./.github/workflows/starters/technical-starters/java/old/maven
+        uses: ./.github/workflows/starters/technical-starters/java/maven
         with:
           project-folder: 'katas/kata-tennis/coding-kata'
 
@@ -229,7 +249,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: kata.tennis.refactoring
-        uses: ./.github/workflows/starters/technical-starters/java/old/maven
+        uses: ./.github/workflows/starters/technical-starters/java/maven
         with:
           project-folder: 'katas/kata-tennis/refactoring-kata'
 
@@ -240,6 +260,6 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: kata.word-wrap
-        uses: ./.github/workflows/starters/technical-starters/java/old/maven
+        uses: ./.github/workflows/starters/technical-starters/java/maven
         with:
           project-folder: 'katas/kata-word-wrap'
