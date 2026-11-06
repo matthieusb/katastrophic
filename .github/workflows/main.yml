@@ -1,6 +1,5 @@
 name: katastrophic project ci workflow
 
-# TODO Try to customize the on trigger for each job if possible
 on: [push]
 
 jobs:
@@ -75,6 +74,15 @@ jobs:
       - name: technical-starters.javascript.npm.node24
         uses: ./.github/workflows/starters/technical-starters/javascript/node-lts-24/vitest
 
+  technical-starters_python_python315_build-and-test:
+    runs-on: ubuntu-latest
+    container:
+      image: ghcr.io/astral-sh/uv:debian
+    steps:
+      - uses: actions/checkout@v4
+      - name: technical-starters.python.python3.15
+        uses: ./.github/workflows/starters/technical-starters/python/python3.15
+
   technical-starters_typescript_npm_node_22_build-and-test:
     runs-on: ubuntu-latest
     container:
@@ -132,7 +140,7 @@ jobs:
   starters-kata-roman-numerals-ts:
     runs-on: ubuntu-latest
     container:
-      image: node:erbium-alpine
+      image: node:22-slim
     steps:
       - uses: actions/checkout@v4
       - name: starters.kata.roman-numerals.ts
@@ -190,7 +198,7 @@ jobs:
   kata-bowling-ts:
     runs-on: ubuntu-latest
     container:
-      image: node:erbium-alpine
+      image: node:22-slim
     steps:
       - uses: actions/checkout@v4
       - name: kata.bowling.ts
