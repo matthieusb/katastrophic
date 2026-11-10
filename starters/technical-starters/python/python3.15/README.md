@@ -27,7 +27,7 @@ uv run hello-world
 
 - Check for linting and formatting errors:
 ```shell
-uv run check .
+uv run ruff check .
 ```
 
 - Fix linting errors:
